@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React, { useRef, useEffect } from 'react';
 import './App.css';
+import fusion from './assets/video.mp4';
 
 function App() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.6;
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <video ref={videoRef} src={fusion} autoPlay loop muted className="fullscreen-video" />
     </div>
   );
 }
